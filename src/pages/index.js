@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setData } from "../redux/dataSlice";
 import Head from "next/head";
 import Image from "next/image";
-import { dataLocal } from "../../localdata";
+//import { dataLocal } from "../../localdata";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
