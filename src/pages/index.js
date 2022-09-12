@@ -1,38 +1,28 @@
-import React, { useEffect, useState, useRef } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setData } from "../redux/dataSlice";
 import Head from "next/head";
 import Image from "next/image";
+import { dataLocal } from "../../localdata";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
 export default function Home() {
-  const [data, setData] = useState([]);
-  const [input, setInput] = useState("");
-  const [filteredResults, setFilteredResults] = useState([]);
+  const dispatch = useDispatch();
 
-  const searchItems = (searchValue) => {
-    setInput(searchValue);
-    if (input !== "") {
-      const filteredData = data.filter((item) => {
-        return Object.values(item)
-          .join("")
-          .toLowerCase()
-          .includes(input.toLowerCase());
-      });
-      setFilteredResults(filteredData);
-    } else {
-      setFilteredResults(data);
-    }
-  };
+  const data = useSelector((state) => state.data.value);
+  const input = useSelector((state) => state.input.value);
+  const filter = useSelector((state) => state.filter.value);
 
   useEffect(() => {
     const getAllData = async () => {
       const res = await fetch(URL);
       const arrData = await res.json();
-      setData(arrData);
+      dispatch(setData(arrData));
       console.log("Data fetched!");
     };
     getAllData();
+    // dispatch(setData(dataLocal));
   }, []);
 
   return (
@@ -43,50 +33,52 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-        <h2 className="logo">E-shop</h2>
-        <span>Происк по товарам:</span>
-        <input
-          type="text"
-          placeholder="Поиск..."
-          onChange={(e) => searchItems(e.target.value)}
-        />
-      </header>
-
       <main>
-        {input.length >= 3
-          ? filteredResults.map((item, index) => {
-              return (
-                <div className="item-wrap" key={index}>
-                  <div className="img-wrap">
-                    {item.image ? (
-                      <Image src={item.image} alt={item.title} layout="fill" />
-                    ) : (
-                      <Image src="/03.png" alt={item.title} layout="fill" />
-                    )}
+        <div className="container">
+          {input.length >= 3
+            ? filter.map((item, index) => {
+                return (
+                  <div className="item-wrap" key={index}>
+                    <div className="img-wrap">
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          layout="fill"
+                        />
+                      ) : (
+                        <Image src="/03.png" alt={item.title} layout="fill" />
+                      )}
+                    </div>
+                    <h2 className="title">{item.title}</h2>
+                    <p className="desc">{item.description}</p>
+                    <span className="price">{item.price} Р</span>
                   </div>
-                  <h2 className="title">{item.title}</h2>
-                  <p className="desc">{item.description}</p>
-                  <span className="price">{item.price} Р</span>
-                </div>
-              );
-            })
-          : data.map((item, index) => {
-              return (
-                <div className="item-wrap" key={index}>
-                  <div className="img-wrap">
-                    {item.image ? (
-                      <Image src={item.image} alt={item.title} layout="fill" />
-                    ) : (
-                      <Image src="/03.png" alt={item.title} layout="fill" />
-                    )}
+                );
+              })
+            : data.map((item, index) => {
+                return (
+                  <div className="item-wrap" key={index}>
+                    <div className="img-wrap">
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          layout="fill"
+                        />
+                      ) : (
+                        <Image src="/03.png" alt={item.title} layout="fill" />
+                      )}
+                    </div>
+                    <h2 className="title">{item.title}</h2>
+                    <p className="desc">
+                      {item.description?.toLowerCase() || " "}
+                    </p>
+                    <span className="price">{item.price} Р</span>
                   </div>
-                  <h2 className="title">{item.title}</h2>
-                  <p className="desc">{item.description}</p>
-                  <span className="price">{item.price} Р</span>
-                </div>
-              );
-            })}
+                );
+              })}
+        </div>
       </main>
     </>
   );

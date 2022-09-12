@@ -1,0 +1,92 @@
+@import "./fonts.scss";
+
+$title-ff: "Apercu", sans-serif;
+$default-ff: "SFPRO", sans-serif;
+
+$white: rgb(255, 255, 255);
+$black: rgb(0, 0, 0);
+
+$light: #ebebeb;
+$dark: rgb(24, 23, 23);
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: $default-ff;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+ul {
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: initial;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+header {
+  position: relative;
+  width: 100%;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    ul {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}
+
+main {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    .item-wrap {
+      position: relative;
+      width: 25%;
+      padding: 2rem;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 4px 4px 20px rgba(222, 222, 222, 0.7);
+      }
+      .img-wrap {
+        position: relative;
+        width: 100%;
+        height: 170px;
+        img {
+          position: relative;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
