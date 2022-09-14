@@ -4,9 +4,9 @@ import { setData } from "../redux/dataSlice";
 import { addtobag } from "../redux/bagSlice";
 import Head from "next/head";
 import Image from "next/image";
-import { dataLocal } from "../../localdata";
+// import { dataLocal } from "../../localdata";
 
-import Button from "../components/button";
+// import Button from "../components/button";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
@@ -18,14 +18,14 @@ export default function Home() {
   const filter = useSelector((state) => state.filter.value);
 
   useEffect(() => {
-    // const getAllData = async () => {
-    //   const res = await fetch(URL);
-    //   const arrData = await res.json();
-    //   dispatch(setData(arrData));
-    //   console.log("Data fetched!");
-    // };
-    // getAllData();
-    dispatch(setData(dataLocal));
+    const getAllData = async () => {
+      const res = await fetch(URL);
+      const arrData = await res.json();
+      dispatch(setData(arrData));
+      console.log("Data fetched!");
+    };
+    getAllData();
+    // dispatch(setData(dataLocal));
   }, []);
 
   return (
