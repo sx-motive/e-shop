@@ -1,0 +1,33 @@
+.bag-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25rem;
+  height: 100vh;
+  background-color: $white;
+  color: $black;
+  padding: 3rem;
+  z-index: 200;
+  box-shadow: 0 0 20px rgba($color: #7a7a7a, $alpha: 0.2);
+  .bag-title {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+  }
+  .product-wrap {
+    display: block;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .product-img {
+      position: relative;
+      width: 5rem;
+      height: 5rem;
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+}

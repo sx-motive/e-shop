@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setData } from "../redux/dataSlice";
+import { addtobag } from "../redux/bagSlice";
 import Head from "next/head";
 import Image from "next/image";
-//import { dataLocal } from "../../localdata";
+import { dataLocal } from "../../localdata";
+
+import Button from "../components/button";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
@@ -15,14 +18,14 @@ export default function Home() {
   const filter = useSelector((state) => state.filter.value);
 
   useEffect(() => {
-    const getAllData = async () => {
-      const res = await fetch(URL);
-      const arrData = await res.json();
-      dispatch(setData(arrData));
-      console.log("Data fetched!");
-    };
-    getAllData();
-    // dispatch(setData(dataLocal));
+    // const getAllData = async () => {
+    //   const res = await fetch(URL);
+    //   const arrData = await res.json();
+    //   dispatch(setData(arrData));
+    //   console.log("Data fetched!");
+    // };
+    // getAllData();
+    dispatch(setData(dataLocal));
   }, []);
 
   return (
@@ -34,51 +37,105 @@ export default function Home() {
       </Head>
 
       <main>
-        <div className="container">
-          {input.length >= 3
-            ? filter.map((item, index) => {
-                return (
-                  <div className="item-wrap" key={index}>
-                    <div className="img-wrap">
-                      {item.image ? (
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          layout="fill"
-                        />
-                      ) : (
-                        <Image src="/03.png" alt={item.title} layout="fill" />
-                      )}
-                    </div>
-                    <h2 className="title">{item.title}</h2>
-                    <p className="desc">{item.description}</p>
-                    <span className="price">{item.price} Р</span>
-                  </div>
-                );
-              })
-            : data.map((item, index) => {
-                return (
-                  <div className="item-wrap" key={index}>
-                    <div className="img-wrap">
-                      {item.image ? (
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          layout="fill"
-                        />
-                      ) : (
-                        <Image src="/03.png" alt={item.title} layout="fill" />
-                      )}
-                    </div>
-                    <h2 className="title">{item.title}</h2>
-                    <p className="desc">
-                      {item.description?.toLowerCase() || " "}
-                    </p>
-                    <span className="price">{item.price} Р</span>
-                  </div>
-                );
-              })}
-        </div>
+        {/* <section className="hero">
+          <div className="container">
+            <div className="slider-wrap">
+              <div className="slider">
+                <div className="content-wrap">
+                  <span className="subtitle">Новинка</span>
+                  <span className="title">
+                    Новое поступление Apple Watch Series 3 уже в продаже
+                  </span>
+
+                  <Button href="/">Перейти</Button>
+                </div>
+                <div className="image-wrapper">
+                  <Image
+                    className="slider-image"
+                    src="/images/slider-01.jpg"
+                    alt="slider"
+                    priority
+                    layout="fill"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> */}
+        <section className="shop-list">
+          <div className="container">
+            <div className="items-shop">
+              {input.length >= 3
+                ? filter.map((item, index) => {
+                    return (
+                      <div className="item-wrap" key={index}>
+                        <div className="img-wrap">
+                          {item.image ? (
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              layout="fill"
+                            />
+                          ) : (
+                            <Image
+                              src="/images/apple-watch.jpg"
+                              alt={item.title}
+                              layout="fill"
+                              priority
+                            />
+                          )}
+                        </div>
+                        <h2 className="title">{item.title}</h2>
+                        <p className="desc">
+                          {item.description?.toLowerCase() || " "}
+                        </p>
+                        <span className="price">{item.price} Р</span>
+                        <button
+                          className="add-to-bag"
+                          onClick={() => dispatch(addtobag(item))}
+                        >
+                          В корзину
+                        </button>
+                      </div>
+                    );
+                  })
+                : data.map((item, index) => {
+                    return (
+                      <div className="item-wrap" key={index}>
+                        <div className="img-wrap">
+                          {item.image ? (
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              layout="fill"
+                            />
+                          ) : (
+                            <Image
+                              src="/images/apple-watch.jpg"
+                              alt={item.title}
+                              layout="fill"
+                              priority
+                            />
+                          )}
+                        </div>
+                        <span className="category">{item.category}</span>
+                        <h2 className="title">{item.title}</h2>
+                        <p className="desc">
+                          {item.description?.toLowerCase() || " "}
+                        </p>
+                        <span className="price">{item.price} Р</span>
+                        <button
+                          className="add-to-bag"
+                          onClick={() => dispatch(addtobag(item))}
+                        >
+                          В корзину
+                        </button>
+                      </div>
+                    );
+                  })}
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );
