@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: [],
+  value: { total: 0, items: [] },
 };
 
 export const bagSlice = createSlice({
@@ -10,16 +10,25 @@ export const bagSlice = createSlice({
   reducers: {
     addtobag: (state, action) => {
       // debugger;
-      const index = state.value.findIndex((item) => {
+      const index = state.value.items.findIndex((item) => {
         return item.id === action.payload.id;
       });
 
       if (index === -1) {
         const obj = { ...action.payload, qty: 1 };
-        state.value.push(obj);
+        state.value.items.push(obj);
       } else {
-        state.value[index].qty++;
+        state.value.items[index].qty++;
       }
+
+      let newBag = [];
+      newBag = state.value.items.map((product) => {
+        let price;
+        price = product.price.replace(/\s+/g, "");
+        return parseInt(price) * product.qty;
+      });
+      console.log(newBag.reduce((a, b) => a + b, 0));
+      state.value.total = newBag.reduce((a, b) => a + b, 0);
     },
   },
 });

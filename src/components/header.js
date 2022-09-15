@@ -34,13 +34,13 @@ export default function Header() {
   useEffect(() => {
     const bagQty = () => {
       let arrQty = [];
-      arrQty = bag.map((item) => {
+      arrQty = bag.items.map((item) => {
         return item.qty;
       });
       setBagItemsQty((prev) => (prev = arrQty.reduce((a, b) => a + b, 0)));
     };
     bagQty();
-  }, [bag]);
+  }, [bag.items]);
 
   return (
     <header className="header">

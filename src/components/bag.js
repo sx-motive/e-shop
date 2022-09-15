@@ -1,35 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useSelector } from "react-redux";
 
 export default function Bag() {
   const bag = useSelector((state) => state.bag.value);
-  const [bagTotal, setBagTotal] = useState(0);
-
-  function sumTotal() {
-    let newBag = [];
-    newBag = bag.map((product) => {
-      let price;
-      price = product.price.replace(/\s+/g, "");
-      return parseInt(price) * product.qty;
-    });
-
-    setBagTotal((prev) => (prev = newBag.reduce((a, b) => a + b, 0)));
-  }
 
   function sum(price, qty) {
     price = price.replace(/\s+/g, "");
     return parseInt(price) * qty;
   }
 
-  useEffect(() => {
-    sumTotal();
-  }, [bag]);
   return (
     <>
       <div className="bag-wrapper">
         <span className="bag-title">Корзина товаров</span>
-        {bag.map((item, index) => (
+        {bag.items.map((item, index) => (
           <div key={index + item.title + item.id} className="product-wrap">
             <div className="product-img">
               <Image
@@ -45,8 +31,11 @@ export default function Bag() {
         ))}
         <div className="bag-total">
           Сумма товаров:
-          <span>{bagTotal}</span>
+          <span>{bag.total}</span>
         </div>
+        <Link href="/order">
+          <a>Перейти к оформлению</a>
+        </Link>
       </div>
     </>
   );
