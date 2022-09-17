@@ -3,6 +3,7 @@ import dataReducer from "./dataSlice";
 import inputReducer from "./inputSlice";
 import filterReducer from "./filterSlice";
 import bagReducer from "./bagSlice";
+import toggleReducer from "./togglesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     input: inputReducer,
     filter: filterReducer,
     bag: bagReducer,
+    toggle: toggleReducer,
   },
 });

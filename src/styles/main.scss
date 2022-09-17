@@ -7,25 +7,28 @@ $white: rgb(255, 255, 255);
 $black: rgb(0, 0, 0);
 
 $light: #f5f5f7;
-$dark: rgb(24, 23, 23);
+$dark: rgb(31, 31, 31);
 $color-middle: rgb(161, 161, 161);
+$color-border: #e5e5e6;
 
 *,
 *::after,
 *::before {
   box-sizing: border-box;
 }
+::-webkit-scrollbar {
+  width: 0;
+}
+::selection {
+  background: $black;
+  color: $white;
+}
 
 html {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
   margin: 0;
   font-family: $default-ff;
   font-weight: 400;
@@ -39,6 +42,7 @@ h4,
 h5,
 h6 {
   font-family: $title-ff;
+  margin: 0;
 }
 
 ul {
@@ -64,151 +68,39 @@ a.button {
   border-radius: 5rem;
 }
 
-input {
-  border: none;
-  font-size: 1rem;
-  font-family: $default-ff;
-  color: $black;
-  padding: 0 1.5rem;
-  background-color: $light;
-  height: 4rem;
+input,
+select {
+  padding: 1rem;
+  border-radius: 0;
+  border: 1px solid $color-border;
+  margin-bottom: 1rem;
+  appearance: none;
+  &::placeholder {
+    color: $color-middle;
+  }
+  &:focus-within,
+  &:focus-visible {
+    border-radius: 0;
+    border: 1px solid $black;
+    outline: 0;
+  }
 }
-input:focus-visible,
-input:focus {
-  border: none !important;
-  outline: none;
+
+main {
+  position: relative;
+  width: 100%;
 }
-input::placeholder {
-  color: $color-middle;
-  opacity: 1;
+section {
+  position: relative;
+  width: 100%;
 }
 .container {
   position: relative;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 20px;
-}
-
-header {
-  position: relative;
-  width: 100%;
-  padding: 2rem 0 0 0;
-  margin-bottom: 2rem;
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-    ul.main-menu {
-      position: absolute;
-      bottom: 0;
-      left: 170px;
-      display: flex;
-      align-items: center;
-      gap: 2.4rem;
-      height: 4rem;
-      li {
-        position: relative;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        a {
-          color: $color-middle;
-        }
-        &:hover a {
-          color: $black;
-        }
-      }
-      li.active a {
-        color: $black;
-      }
-      li.active::after {
-        content: "";
-        position: absolute;
-        left: -1rem;
-        bottom: 0;
-        width: calc(100% + 2rem);
-        height: 1px;
-        background-color: $black;
-        z-index: 2;
-      }
-    }
-    .search-wrap {
-      position: relative;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      padding-right: 1rem;
-
-      svg {
-        opacity: 0.4;
-        transition: opacity 0.4s ease-in-out;
-      }
-
-      input {
-        position: relative;
-        min-width: 250px;
-        background-color: $white;
-        pointer-events: auto;
-        &:focus-visible ~ .line {
-          width: 100%;
-        }
-        &:focus-visible ~ svg {
-          opacity: 1;
-        }
-      }
-
-      .line {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        height: 1px;
-        background-color: $black;
-        z-index: 2;
-        transition: width 0.4s ease-in-out;
-      }
-    }
-
-    .header-right-bar {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      .bag-wrap {
-        span.bag-qty {
-          position: absolute;
-          background-color: red;
-          color: $white;
-          top: 0.5rem;
-          right: -0.6rem;
-          width: 1.3rem;
-          height: 1.3rem;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.7rem;
-        }
-      }
-    }
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: $light;
-  }
 }
 
 section.hero {
@@ -291,5 +183,7 @@ section.shop-list {
     }
   }
 }
-
+@import "./layout.scss";
+@import "./pages.scss";
 @import "./bag.scss";
+@import "./product.scss";

@@ -1,0 +1,77 @@
+main.watches {
+  section.banner {
+    position: relative;
+    height: 70vh;
+    background-image: url("/images/bg-watches.webp");
+    background-size: cover;
+    background-position: bottom center;
+    overflow: hidden;
+    .title {
+      position: absolute;
+      bottom: 3rem;
+      left: 6rem;
+      color: $white;
+      h1 {
+        font-size: 7rem;
+        text-transform: capitalize;
+        display: flex;
+        align-items: flex-start;
+        span {
+          font-size: 2.5rem;
+        }
+      }
+      p {
+        font-size: 1.4rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  section.content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+main.checkout {
+  padding: 10rem 0 0 0;
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .left {
+      position: relative;
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      padding-right: 8rem;
+      .title {
+        font-size: 1.2rem;
+        font-family: $title-ff;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        margin-top: 4rem;
+      }
+    }
+    .right {
+      position: relative;
+      width: 40%;
+      padding-left: 3rem;
+      &::after {
+        content: "";
+        position: absolute;
+        top: -10rem;
+        left: 0;
+        width: 300%;
+        height: 100vh;
+        background-color: $light;
+        z-index: -1;
+      }
+      .list {
+        border: 1px dashed $black;
+        padding: 2rem;
+      }
+    }
+  }
+}

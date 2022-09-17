@@ -27,7 +27,6 @@ export const bagSlice = createSlice({
         price = product.price.replace(/\s+/g, "");
         return parseInt(price) * product.qty;
       });
-      console.log(newBag.reduce((a, b) => a + b, 0));
       state.value.total = newBag.reduce((a, b) => a + b, 0);
     },
   },
