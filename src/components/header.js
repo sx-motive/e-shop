@@ -66,8 +66,8 @@ export default function Header() {
             <a className="menu-link">Главная</a>
           </Link>
         </li>
-        {/* <li className={router.pathname == "/watches" ? "active" : ""}>
-          <Link href="/watches">
+        <li className={router.pathname == "/watches" ? "active" : ""}>
+          <Link href="/">
             <a className="menu-link">Смарт-часы</a>
           </Link>
         </li>
@@ -80,7 +80,7 @@ export default function Header() {
           <Link href="/">
             <a className="menu-link">Аксессуары</a>
           </Link>
-        </li> */}
+        </li>
       </ul>
       <div className="header-right-bar">
         {/* <div className="search-wrap">

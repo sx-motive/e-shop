@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setData } from "../redux/dataSlice";
 import { useRouter } from "next/router";
 
-import { dataLocal } from "../../localdata";
+// import { dataLocal } from "../../localdata";
 
 import Header from "./header";
 import Footer from "./footer";
@@ -15,14 +15,14 @@ export default function Layout({ children }) {
   const router = useRouter();
 
   useEffect(() => {
-    // const getAllData = async () => {
-    //   const res = await fetch(`${URL}/products`);
-    //   const arrData = await res.json();
-    //   dispatch(setData(arrData));
-    //   console.log("Data fetched!");
-    // };
-    // getAllData();
-    dispatch(setData(dataLocal));
+    const getAllData = async () => {
+      const res = await fetch(`${URL}/products`);
+      const arrData = await res.json();
+      dispatch(setData(arrData));
+      console.log("Data fetched!");
+    };
+    getAllData();
+    // dispatch(setData(dataLocal));
   }, []);
 
   return (

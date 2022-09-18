@@ -1,92 +1,151 @@
+.bag {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 40rem;
+  height: 100vh;
+  background-color: $light;
+  color: $black;
+  z-index: 200;
+  transition: right 0.56s cubic-bezier(0.28, 0.81, 0.43, 0.97);
+  &.open {
+    right: 0;
+  }
+  .left {
+    position: relative;
+    width: 85%;
+    height: 100vh;
+    border-right: 1px solid $color-border;
+    .bag-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5rem 4rem 2rem 4rem;
+
+      .title {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.3rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        .total-qty {
+          font-size: 1rem;
+        }
+      }
+      .bag-close {
+        cursor: pointer;
+      }
+    }
+    .bag-products {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      padding: 1rem 4rem;
+      .bag-product {
+        width: 100%;
+        height: auto;
+        display: flex;
+        gap: 1rem;
+        .bag-product-image {
+          position: relative;
+          min-width: 6rem;
+        }
+        .bag-product-info-wrap {
+          position: relative;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          .bag-product-box-first {
+            display: flex;
+            flex-direction: column;
+            padding-left: 1.5rem;
+            .bag-product-title {
+              font-size: 1.1rem;
+              font-weight: 700;
+              margin-bottom: 0.5rem;
+            }
+            .bag-product-category {
+              opacity: 0.3;
+            }
+            .bag-product-qty {
+              margin-top: 1rem;
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              user-select: none;
+              span {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        .bag-product-box-second {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-end;
+          .bag-product-remove {
+            padding-bottom: 0.3rem;
+            cursor: pointer;
+            user-select: none;
+          }
+        }
+      }
+    }
+    .bag-footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 2.5rem 4rem 2rem 4rem;
+      border-top: 1px solid $color-border;
+      .bag-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0 2rem 0;
+        .total-sum {
+          font-size: 1.4rem;
+          font-weight: 700;
+        }
+      }
+      .bag-checkout {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 1.2rem;
+        color: $white;
+        background-color: $black;
+        text-align: center;
+        font-size: 0.85rem;
+      }
+      .bag-notice {
+        text-align: center;
+        display: block;
+        font-size: 0.8rem;
+        margin-top: 1.5rem;
+        color: $color-middle;
+      }
+    }
+  }
+  .right {
+    position: relative;
+    width: 15%;
+  }
+}
+
 .bag-bg {
   position: fixed;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
   z-index: 190;
   &.open {
     display: block;
-  }
-}
-.bag-wrapper {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 30vw;
-  height: 100vh;
-  background-color: $white;
-  color: $black;
-  padding: 1.6rem;
-  z-index: 200;
-  transition: right 0.3s ease-in-out;
-  &.open {
-    right: 0;
-  }
-  .bag-title {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 1.7rem 0 2.5rem 0;
-    text-align: center;
-  }
-  .products-wrapper {
-    position: relative;
-    height: 100%;
-    max-height: 60vh;
-    overflow-y: auto;
-    .product-wrap {
-      position: relative;
-      padding: 1rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid $light;
-      &:nth-child(1) {
-        border-top: 1px solid $light;
-      }
-      .product-img {
-        position: relative;
-        width: 3.6rem;
-        height: 3.6rem;
-        flex-basis: 3.6rem;
-        img {
-          object-fit: cover;
-        }
-      }
-      .product-title {
-        flex-basis: 10rem;
-      }
-    }
-  }
-
-  .bag-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1.6rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    .bag-total {
-      display: block;
-      text-align: center;
-      position: relative;
-      width: 100%;
-      background-color: $light;
-      padding: 1.5rem 2rem;
-    }
-    .bag-go-order {
-      display: block;
-      text-align: center;
-      position: relative;
-      width: 100%;
-      background-color: $black;
-      color: $white;
-      padding: 1.5rem 2rem;
-    }
   }
 }
