@@ -9,7 +9,9 @@ export default function Product({ item }) {
   const [successAdd, setSuccsessAdd] = useState(false);
 
   const imagesParser = (string) => {
-    return string.split(",");
+    let images = [];
+    images = string.split(",");
+    return images;
   };
 
   function AddToBag() {
@@ -64,16 +66,13 @@ export default function Product({ item }) {
                 layout="fill"
               />
             </div>
-            {imagesParser(item.image).length > 1 ? (
-              <Image
-                className="second"
-                src={imagesParser(item.image)[1]}
-                alt={item.title}
-                layout="fill"
-              />
-            ) : (
-              ""
-            )}
+
+            <Image
+              className="second"
+              src={imagesParser(item.image)[1]}
+              alt={item.title}
+              layout="fill"
+            />
           </>
         ) : (
           <>
