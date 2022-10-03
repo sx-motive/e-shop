@@ -11,7 +11,7 @@ export default function Footer() {
           <a className="subscribe-btn">Подписаться на рассылку ↗︎</a>
         </Link>
         <span className="agreement">
-          Отправля свои данные, вы соглашаетесь с условиями. Наша
+          Отправляя свои данные, вы соглашаетесь с условиями. Наша
           <Link href="/privacy-policy">
             <a className="privacy-link">политика конфиденциальности.</a>
           </Link>
@@ -98,6 +98,7 @@ export default function Footer() {
               <Image
                 src="/images/payment/paypal@2x.png"
                 layout="fill"
+                alt="card"
                 priority
               />
             </div>
@@ -105,16 +106,23 @@ export default function Footer() {
               <Image
                 src="/images/payment/maestro@2x.png"
                 layout="fill"
+                alt="card"
                 priority
               />
             </div>
             <div className="payment-img-wrap">
-              <Image src="/images/payment/visa@2x.png" layout="fill" priority />
+              <Image
+                src="/images/payment/visa@2x.png"
+                layout="fill"
+                alt="card"
+                priority
+              />
             </div>
             <div className="payment-img-wrap">
               <Image
                 src="/images/payment/mastercard@2x.png"
                 layout="fill"
+                alt="card"
                 priority
               />
             </div>
