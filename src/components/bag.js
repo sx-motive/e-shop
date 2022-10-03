@@ -11,11 +11,6 @@ export default function Bag() {
   const [bagItemsQty, setBagItemsQty] = useState(0);
   const dispatch = useDispatch();
 
-  function sum(price, qty) {
-    price = price.replace(/\s+/g, "");
-    return parseInt(price) * qty;
-  }
-
   const imagesParser = (string) => {
     return string.split(",");
   };
@@ -41,7 +36,7 @@ export default function Bag() {
             </span>
             <svg
               onClick={() => dispatch(toggleBag())}
-              class="bag-close"
+              className="bag-close"
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -71,14 +66,13 @@ export default function Bag() {
                       className="first"
                       src={imagesParser(item.image)[0]}
                       alt={item.title}
-                      width={150}
-                      height={120}
+                      layout="fill"
                     />
                   ) : (
                     <>
                       <Image
                         className="first"
-                        src="https://res.cloudinary.com/dnwnhcjfu/image/upload/v1663398773/MPLD3_VW_34FR_watch-45-alum-starlight-nc-8s_VW_34FR_WF_CO_GEO_CA_y5ixau.jpg"
+                        src="/images/placeholder.png"
                         alt={item.title}
                         width={90}
                         height={84}

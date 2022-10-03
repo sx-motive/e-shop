@@ -56,13 +56,14 @@ export default function Product({ item }) {
       <div className="image">
         {item.image ? (
           <>
-            <Image
-              className="first"
-              src={imagesParser(item.image)[0]}
-              alt={item.title}
-              width={350}
-              height={320}
-            />
+            <div className="main-image-wrap">
+              <Image
+                className="first"
+                src={imagesParser(item.image)[0]}
+                alt={item.title}
+                layout="fill"
+              />
+            </div>
             {item.image.length > 1 ? (
               <Image
                 className="second"
@@ -76,16 +77,17 @@ export default function Product({ item }) {
           </>
         ) : (
           <>
-            <Image
-              className="first"
-              src="https://res.cloudinary.com/dnwnhcjfu/image/upload/v1663398773/MPLD3_VW_34FR_watch-45-alum-starlight-nc-8s_VW_34FR_WF_CO_GEO_CA_y5ixau.jpg"
-              alt={item.title}
-              width={350}
-              height={320}
-            />
+            <div className="main-image-wrap">
+              <Image
+                className="first"
+                src="/images/placeholder.png"
+                alt={item.title}
+                layout="fill"
+              />
+            </div>
             <Image
               className="second"
-              src="https://res.cloudinary.com/dnwnhcjfu/image/upload/v1663398773/ayJPrBxTrNwAwqCXHzWVJZ_deveof.jpg"
+              src="/images/placeholder.png"
               alt={item.title}
               layout="fill"
             />

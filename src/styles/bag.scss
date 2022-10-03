@@ -4,10 +4,13 @@
   right: -100%;
   width: 40rem;
   height: 100vh;
-  background-color: $light;
+  background-color: $white;
   color: $black;
   z-index: 200;
   transition: right 0.56s cubic-bezier(0.28, 0.81, 0.43, 0.97);
+  @include media("<=phone") {
+    width: 100%;
+  }
   &.open {
     right: 0;
   }
@@ -16,11 +19,17 @@
     width: 85%;
     height: 100vh;
     border-right: 1px solid $color-border;
+    @include media("<=phone") {
+      width: 100%;
+    }
     .bag-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 5rem 4rem 2rem 4rem;
+      @include media("<=phone") {
+        padding: 2rem;
+      }
 
       .title {
         display: flex;
@@ -43,14 +52,37 @@
       flex-wrap: wrap;
       gap: 3rem;
       padding: 1rem 4rem;
+      overflow-y: auto;
+      max-height: 50vh;
+      @include media("<=phone") {
+        padding: 2rem;
+      }
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: $light;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $black;
+      }
+
       .bag-product {
         width: 100%;
         height: auto;
         display: flex;
-        gap: 1rem;
+        gap: 0.5rem;
         .bag-product-image {
           position: relative;
           min-width: 6rem;
+          height: 6rem;
+          img {
+            position: relative;
+            object-fit: cover;
+            width: 100%;
+          }
         }
         .bag-product-info-wrap {
           position: relative;
@@ -87,8 +119,13 @@
           flex-direction: column;
           justify-content: space-between;
           align-items: flex-end;
+          width: 17rem;
+          .bag-product-price {
+            display: flex;
+            flex-wrap: nowrap;
+          }
           .bag-product-remove {
-            padding-bottom: 0.3rem;
+            padding-bottom: 0.7rem;
             cursor: pointer;
             user-select: none;
           }
@@ -101,6 +138,9 @@
       width: 100%;
       padding: 2.5rem 4rem 2rem 4rem;
       border-top: 1px solid $color-border;
+      @include media("<=phone") {
+        padding: 2rem;
+      }
       .bag-total {
         display: flex;
         justify-content: space-between;

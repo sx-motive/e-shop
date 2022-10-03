@@ -5,6 +5,9 @@
   height: 70vh;
   border: 1px solid $color-border;
   margin: -1px -1px 0 0;
+  @include media("<=phone") {
+    width: 100%;
+  }
   .title {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
@@ -22,15 +25,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    .main-image-wrap {
+      position: absolute;
+      width: 70%;
+      left: 15%;
+      height: 80%;
+      top: 10%;
+    }
     .first {
       position: relative;
+      object-fit: contain;
     }
     .second {
       position: absolute;
       top: 0;
       left: 0;
       object-fit: cover;
-
       opacity: 0;
       background-color: $white;
       transition: 0.4s ease;

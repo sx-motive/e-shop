@@ -1,28 +1,56 @@
-main.watches {
+main {
+  &.headphones {
+    section.banner {
+      background-image: url("/images/bg-headphones.jpg");
+      background-position: center;
+    }
+  }
+  &.watches {
+    section.banner {
+      background-image: url("/images/bg-watches.webp");
+      background-position: bottom center;
+    }
+  }
+  &.accessories {
+    section.banner {
+      background-color: rgb(77, 70, 70);
+      background-position: bottom center;
+    }
+  }
   section.banner {
     position: relative;
     height: 70vh;
-    background-image: url("/images/bg-watches.webp");
     background-size: cover;
-    background-position: bottom center;
     overflow: hidden;
     .title {
       position: absolute;
       bottom: 3rem;
-      left: 6rem;
+      left: 5rem;
       color: $white;
+      @include media("<=tablet") {
+        left: 2rem;
+      }
       h1 {
         font-size: 7rem;
         text-transform: capitalize;
         display: flex;
         align-items: flex-start;
+        @include media("<=tablet") {
+          font-size: 3rem;
+        }
         span {
           font-size: 2.5rem;
+          @include media("<=tablet") {
+            font-size: 1rem;
+          }
         }
       }
       p {
         font-size: 1.4rem;
         margin-left: 0.5rem;
+        @include media("<=tablet") {
+          font-size: 1rem;
+        }
       }
     }
   }
@@ -34,18 +62,49 @@ main.watches {
 }
 
 main.checkout {
-  padding: 10rem 0 0 0;
-
+  padding: 2rem 0 0 0;
+  overflow-x: hidden;
+  @include media("<=tablet") {
+    width: 100%;
+  }
   .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    @include media("<=tablet") {
+      flex-direction: column-reverse;
+    }
+    .logo {
+      position: absolute;
+      top: 2rem;
+      @include media("<=tablet") {
+        top: 0.8rem;
+      }
+    }
     .left {
       position: relative;
       width: 60%;
       display: flex;
       flex-direction: column;
       padding-right: 8rem;
+      margin-top: 5rem;
+      @include media("<=tablet") {
+        width: 100%;
+        padding-right: 0;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        .error-msg {
+          display: block;
+          width: 100%;
+          margin-bottom: 1rem;
+          background-color: $white;
+          color: red;
+        }
+      }
       .title {
         font-size: 1.2rem;
         font-family: $title-ff;
@@ -53,25 +112,197 @@ main.checkout {
         margin-bottom: 1rem;
         margin-top: 4rem;
       }
+      .inputs-split {
+        display: flex;
+        justify-content: space-between;
+        input {
+          position: relative;
+          width: 48.7%;
+        }
+      }
+      .agreetment {
+        input.checkbox {
+          position: relative;
+          display: inline-block;
+          padding: 0.7rem;
+          margin-top: 0.9rem;
+          margin-left: 0;
+        }
+        display: flex;
+        align-items: center;
+        line-height: 0;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        @include media("<=tablet") {
+          display: none;
+        }
+      }
+      .checkout-footer {
+        position: relative;
+        width: 100%;
+        margin: 3rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        .btn-back {
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.5rem;
+            width: 100%;
+            height: 1px;
+            background-color: $black;
+          }
+          @include media("<=tablet") {
+            display: none;
+          }
+        }
+        @include media("<=tablet") {
+          margin: 1rem 0;
+        }
+        .btn {
+          position: relative;
+          width: 60%;
+          padding: 1.2rem;
+          color: $white;
+          background-color: $black;
+          text-align: center;
+          font-size: 0.85rem;
+          cursor: pointer;
+          margin-bottom: 0;
+          @include media("<=tablet") {
+            width: 100%;
+            display: block;
+          }
+        }
+      }
+      .copyright {
+        padding: 1.5rem 0;
+        border-top: 1px solid $color-border;
+        font-size: 0.7rem;
+      }
     }
     .right {
       position: relative;
       width: 40%;
       padding-left: 3rem;
+      padding-top: 3rem;
+      border-left: 1px solid $color-border;
+      @include media("<=tablet") {
+        margin-top: 5rem;
+        width: 100%;
+        border: 1px solid $color-border;
+        padding: 2rem;
+      }
       &::after {
         content: "";
         position: absolute;
         top: -10rem;
         left: 0;
         width: 300%;
-        height: 100vh;
-        background-color: $light;
+        height: 100%;
+        background-color: $white;
         z-index: -1;
       }
       .list {
-        border: 1px dashed $black;
-        padding: 2rem;
+        position: relative;
+        padding-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        border-bottom: 1px solid $color-middle;
+
+        .product-item {
+          position: relative;
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 3rem;
+          @include media("<=phone") {
+            gap: 1rem;
+          }
+          .img-wrap {
+            position: relative;
+            width: 5rem;
+            height: 5rem;
+            @include media("<=phone") {
+              width: 3.5rem;
+              height: 3.5rem;
+            }
+            img {
+              position: relative;
+              object-fit: contain;
+            }
+          }
+          .qty {
+            position: absolute;
+            width: 2rem;
+            height: 2rem;
+            z-index: 4;
+            right: -0.5rem;
+            top: -0.5rem;
+            padding: 0.5rem;
+            background-color: $black;
+            color: $white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include media("<=phone") {
+              width: 1.4rem;
+              height: 1.4rem;
+              font-size: 0.7rem;
+            }
+          }
+          .meta-wrap {
+            display: flex;
+            flex-direction: column;
+            .title {
+              font-size: 1.1rem;
+            }
+            .desc {
+              color: $color-middle;
+            }
+          }
+          .price {
+            position: absolute;
+            right: 0;
+          }
+        }
       }
+      .total {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 0;
+        @include media("<=tablet") {
+          padding: 2rem 0 0 0;
+        }
+        .total-count {
+          font-size: 1.4rem;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+main.default {
+  padding: 12rem 0;
+  section {
+    position: relative;
+    margin-left: 5rem;
+    width: 100%;
+    max-width: 880px;
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 3rem;
     }
   }
 }

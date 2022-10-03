@@ -1,4 +1,6 @@
+@charset "UTF-8";
 @import "./fonts.scss";
+@import "./vendors/includemedia.scss";
 
 $title-ff: "SFPRO", sans-serif;
 $default-ff: "SFPRO", sans-serif;
@@ -17,8 +19,9 @@ $color-border: #e5e5e6;
   box-sizing: border-box;
 }
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 0;
 }
+
 ::selection {
   background: $black;
   color: $white;
@@ -26,6 +29,7 @@ $color-border: #e5e5e6;
 
 html {
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -33,6 +37,7 @@ body {
   font-family: $default-ff;
   font-weight: 400;
   font-size: 1rem;
+  overflow-x: hidden;
 }
 
 h1,
@@ -47,6 +52,7 @@ h6 {
 
 ul {
   margin: 0;
+  padding-inline-start: 0;
 }
 
 li {
@@ -68,13 +74,18 @@ a.button {
   border-radius: 5rem;
 }
 
+p {
+  line-height: 1.5rem;
+}
+
 input,
 select {
-  padding: 1rem;
+  padding: 1.2rem 1rem;
   border-radius: 0;
   border: 1px solid $color-border;
   margin-bottom: 1rem;
   appearance: none;
+  transition: border 0.3s ease-in-out;
   &::placeholder {
     color: $color-middle;
   }
@@ -97,7 +108,7 @@ section {
 .container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1240px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 20px;
