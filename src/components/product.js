@@ -64,7 +64,7 @@ export default function Product({ item }) {
                 layout="fill"
               />
             </div>
-            {item.image.length > 1 ? (
+            {imagesParser(item.image).length > 1 ? (
               <Image
                 className="second"
                 src={imagesParser(item.image)[1]}
