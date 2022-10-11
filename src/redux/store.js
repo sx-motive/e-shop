@@ -4,6 +4,7 @@ import inputReducer from "./inputSlice";
 import filterReducer from "./filterSlice";
 import bagReducer from "./bagSlice";
 import toggleReducer from "./togglesSlice";
+import productViewReducer from "./productViewSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     filter: filterReducer,
     bag: bagReducer,
     toggle: toggleReducer,
+    productView: productViewReducer,
   },
 });

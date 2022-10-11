@@ -3,7 +3,7 @@ header {
   left: 0;
   top: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 10;
   color: $white;
   display: flex;
   align-items: center;
@@ -50,7 +50,8 @@ header {
     background-color: $white;
     color: $black;
     border-bottom: 1px solid $color-border;
-    padding: 1.5rem 5rem;
+    padding: 2rem 5rem;
+    z-index: 500;
     @include media("<=tablet") {
       padding: 1.3rem 2rem;
     }

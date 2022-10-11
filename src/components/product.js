@@ -3,15 +3,14 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { addtobag } from "../redux/bagSlice";
 import { toggleBag } from "../redux/togglesSlice";
+import { setProductView } from "../redux/productViewSlice";
 
 export default function Product({ item }) {
   const dispatch = useDispatch();
   const [successAdd, setSuccsessAdd] = useState(false);
 
   const imagesParser = (string) => {
-    let images = [];
-    images = string.split(",");
-    return images;
+    return string.split(",");
   };
 
   function AddToBag() {
@@ -52,7 +51,7 @@ export default function Product({ item }) {
   }
 
   return (
-    <div className="product">
+    <div className="product" onClick={() => dispatch(setProductView(item))}>
       <h3 className="title">{item.title}</h3>
       <span className="price">{item.price} ₽</span>
       <div className="image">
@@ -66,13 +65,16 @@ export default function Product({ item }) {
                 layout="fill"
               />
             </div>
-
-            <Image
-              className="second"
-              src={imagesParser(item.image)[1]}
-              alt={item.title}
-              layout="fill"
-            />
+            {imagesParser(item.image).length > 1 ? (
+              <Image
+                className="second"
+                src={imagesParser(item.image)[1]}
+                alt={item.title}
+                layout="fill"
+              />
+            ) : (
+              ""
+            )}
           </>
         ) : (
           <>

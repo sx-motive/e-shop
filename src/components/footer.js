@@ -126,6 +126,14 @@ export default function Footer() {
                 priority
               />
             </div>
+            <div className="payment-img-wrap">
+              <Image
+                src="/images/payment/mir.svg"
+                layout="fill"
+                alt="card"
+                priority
+              />
+            </div>
           </div>
         </div>
         <div className="footer-bottom-menu">

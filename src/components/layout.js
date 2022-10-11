@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Header from "./header";
 import Footer from "./footer";
 import Bag from "./bag";
+import ProductView from "./productView";
 
 export default function Layout({ children }) {
   const URL = process.env.NEXT_PUBLIC_URL;
@@ -34,6 +35,7 @@ export default function Layout({ children }) {
           <Header />
           <Bag />
           {children}
+          <ProductView />
           <Footer />
         </>
       )}
