@@ -19,7 +19,7 @@ export default function Layout({ children }) {
 
   const getAllData = async () => {
     const auth = AUTHUSER + ":" + AUTHPASS;
-    const res = await fetch(`${URL}/products`, {
+    const res = await fetch(`${URL}products`, {
       method: "GET",
       headers: {
         Authorization: `Basic ${btoa(auth)}`,
