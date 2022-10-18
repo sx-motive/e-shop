@@ -5,8 +5,13 @@
   height: 70vh;
   border: 1px solid $color-border;
   margin: -1px -1px 0 0;
+  @include media("<=tablet") {
+    width: 33%;
+    height: 50vh;
+  }
   @include media("<=phone") {
-    width: 100%;
+    width: 50%;
+    height: 50vh;
   }
   .title {
     font-size: 1.1rem;

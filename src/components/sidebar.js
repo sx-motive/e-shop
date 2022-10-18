@@ -9,23 +9,23 @@ export default function Sidebar() {
         <div className="filter-wrap">
           <ul className="filter-items">
             <li>
-              <Link href="/shop/watches">
+              <Link href="#">
                 <a>
-                  Смарт-часы <PlusIcon />
+                  Категория <PlusIcon />
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/shop/category/headphones">
+              <Link href="#">
                 <a>
-                  Наушники <PlusIcon />
+                  Цвет <PlusIcon />
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/shop/accessoaries">
+              <Link href="#">
                 <a>
-                  Аксессуары <PlusIcon />
+                  Размер <PlusIcon />
                 </a>
               </Link>
             </li>

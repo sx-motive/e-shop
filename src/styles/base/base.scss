@@ -17,22 +17,13 @@ $padding-layout: 4rem;
   box-sizing: border-box;
 }
 
-::selection {
-  background: $black;
-  color: $white;
-}
-
 html {
   font-size: 17px;
   overflow-x: hidden;
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
+  text-rendering: geometricPrecision;
   margin: 0;
   font-family: $default-ff;
   font-weight: 500;
@@ -61,7 +52,7 @@ li {
 
 a {
   text-decoration: none;
-  color: initial;
+  color: inherit;
 }
 
 a.button {

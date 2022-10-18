@@ -5,31 +5,31 @@ import { useSelector } from "react-redux";
 import Product from "../../components/product";
 import Sidebar from "../../components/sidebar";
 
-export default function Headphones() {
+export default function Watches() {
   const data = useSelector((state) => state.data.value);
   const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    setCategory(data.filter((item) => item.category == "Наушники"));
+    setCategory(data.filter((item) => item.category == "Смарт-часы"));
     data.length > 0 ? setLoading(false) : "";
   }, [data]);
 
   return (
     <>
       <Head>
-        <title>Db Store - Наушники из Китая безупречного качества.</title>
+        <title>Db Store - Смарт-часы из Китая безупречного качества.</title>
       </Head>
 
       <section className="banner">
         <div className="title">
           <h1>
-            Наушники <span>({category.length})</span>
+            Смарт-часы <span>({category.length})</span>
           </h1>
-          <p>Наушники из Китая, безупречного качества</p>
+          <p>Смарт-часы из Китая, безупречного качества</p>
         </div>
         <Image
           className="banner-image"
-          src="https://res.cloudinary.com/dnwnhcjfu/image/upload/v1664697786/bg-headphones_zfcxaq.webp"
+          src="/images/bg-watches.webp"
           layout="fill"
           quality={100}
           priority

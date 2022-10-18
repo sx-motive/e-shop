@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter, asPath } from "next/router";
 import Image from "next/image";
-import Link from "next/link";
+import Head from "next/head";
+
 import { useSelector } from "react-redux";
 import Product from "../../components/product";
 import Sidebar from "../../components/sidebar";
 
 export default function Shop() {
   const data = useSelector((state) => state.data.value);
+  const [loading, setLoading] = useState(true);
+  const title = `Db Store - Каталог`;
+
+  useEffect(() => {
+    data.length > 0 ? setLoading(false) : "";
+  });
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <section className="banner">
         <div className="title">
           <h1>
@@ -23,9 +34,13 @@ export default function Shop() {
       </section>
       <section className="content">
         <div className="catalog-wrap">
-          {data.map((product) => {
-            return <Product key={product.id} item={product} />;
-          })}
+          {loading == true ? (
+            <span className="loading">Загрузка...</span>
+          ) : (
+            data.map((product) => {
+              return <Product key={product.id} item={product} />;
+            })
+          )}
         </div>
       </section>
     </>

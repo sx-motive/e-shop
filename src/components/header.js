@@ -5,36 +5,35 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { setInput } from "../store/slices/inputSlice";
 import { setFilter } from "../store/slices/filterSlice";
-import { toggleBag } from "../store/slices/togglesSlice";
+import { toggleBag, toggleMenu } from "../store/slices/togglesSlice";
 
-import { BagIcon, TelegramIcon } from "./icons";
+import { BagIcon, LogoIcon, SearchIcon, PlusIcon } from "./icons";
 
 export default function Header() {
   const data = useSelector((state) => state.data.value);
   const input = useSelector((state) => state.input.value);
-  const filter = useSelector((state) => state.filter.value);
+  // const filter = useSelector((state) => state.filter.value);
   const bag = useSelector((state) => state.bag.value);
-  const isBagOpen = useSelector((state) => state.toggle.value.isBagOpen);
   const [bagItemsQty, setBagItemsQty] = useState(0);
   const [headerSticky, setHeaderSticky] = useState(false);
 
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const searchItems = (text) => {
-    dispatch(setInput(text));
-    if (input !== "") {
-      const filteredData = data.filter((item) => {
-        return Object.values(item)
-          .join("")
-          .toLowerCase()
-          .includes(input.toLowerCase());
-      });
-      dispatch(setFilter(filteredData));
-    } else {
-      dispatch(setFilter(data));
-    }
-  };
+  // const searchItems = (text) => {
+  //   dispatch(setInput(text));
+  //   if (input !== "") {
+  //     const filteredData = data.filter((item) => {
+  //       return Object.values(item)
+  //         .join("")
+  //         .toLowerCase()
+  //         .includes(input.toLowerCase());
+  //     });
+  //     dispatch(setFilter(filteredData));
+  //   } else {
+  //     dispatch(setFilter(data));
+  //   }
+  // };
 
   useEffect(() => {
     const bagQty = () => {
@@ -56,83 +55,69 @@ export default function Header() {
     };
   }, []);
 
-  const pages = ["/shop", "/shop/headphones", "/shop/watches"];
+  const pages = [
+    "/",
+    "/shop",
+    "/shop/headphones",
+    "/shop/watches",
+    "/shop/accessories",
+  ];
 
   return (
     <header
       className={`header ${
-        pages.some((i) => i == router.pathname) == true ? "white" : "black"
+        pages.includes(router.asPath) && headerSticky == false ? "white" : ""
       } ${headerSticky == false ? "" : "sticky"}`}
     >
+      <span className="menu-ico" onClick={() => dispatch(toggleMenu())}>
+        Меню <PlusIcon />
+      </span>
       <Link href="/">
         <a className="logo">
-          <svg
-            width="40"
-            height="26"
-            viewBox="0 0 40 26"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Db North America</title>
-            <path
-              d="M37.7832 10.2203C36.5391 8.60228 34.899 7.79327 32.8592 7.79327C31.834 7.79327 30.8789 8.04823 29.9946 8.55904C29.5116 8.84462 28.9871 9.26534 28.4218 9.8239V0.296875H21.4191V1.17796C22.1616 1.28696 22.6685 1.47705 22.9396 1.74913C23.2108 2.0212 23.3463 2.54372 23.3463 3.31759V6.14552C22.8997 5.36895 22.3654 4.65453 21.7381 4.00588C19.343 1.53381 15.8634 0.297775 11.3019 0.297775H0V1.25183C0.974683 1.33742 1.66139 1.49057 2.05835 1.71129C2.74418 2.09057 3.08797 2.76354 3.08797 3.73021V22.2707C3.08797 23.2744 2.72646 23.9662 2.0043 24.3446C1.59494 24.5536 0.926835 24.687 0 24.7482V25.7032H11.6811C15.9059 25.7032 19.2527 24.3753 21.7195 21.7194C22.3548 21.0347 22.8953 20.305 23.3463 19.532V25.6987H23.8594L26.7054 23.6122C27.3532 24.2356 28.0496 24.7392 28.7921 25.123C29.5347 25.5068 30.3897 25.6987 31.3556 25.6987C33.7125 25.6987 35.6841 24.8753 37.2701 23.2266C38.8553 21.5789 39.6484 19.2329 39.6484 16.1888C39.6484 13.8275 39.0272 11.8383 37.7832 10.2203ZM16.4659 22.078C15.0571 23.6509 13.2575 24.4374 11.0671 24.4374C10.2608 24.4374 9.73443 24.2662 9.48721 23.923C9.24 23.5807 9.09911 23.023 9.06278 22.2527V3.74823C9.06278 2.97705 9.15937 2.45724 9.35164 2.18787C9.6405 1.77165 10.2661 1.56354 11.2292 1.56354C14.1418 1.56354 16.2125 3.09958 17.4397 6.17165C18.1982 8.08066 18.5775 10.3635 18.5775 13.0185C18.5784 17.4852 17.8739 20.505 16.4659 22.078ZM33.5575 22.514C33.0444 23.8464 32.1699 24.5122 30.9311 24.5122C29.9414 24.5122 29.2334 24.0924 28.809 23.2527C28.5972 22.8212 28.467 22.2689 28.4209 21.596V11.9131C28.4209 11.6617 28.653 11.2437 29.1191 10.6626C29.5852 10.0807 30.2063 9.78967 30.9843 9.78967C32.3046 9.78967 33.1915 10.4852 33.6452 11.8771C34.0989 13.2689 34.3257 14.9311 34.3257 16.8626C34.3266 19.2987 34.0705 21.1825 33.5575 22.514Z"
-              fill="white"
-            ></path>
-            <path
-              d="M36.3245 0.296875L36.352 0.879757H36.2838C36.2705 0.777055 36.2528 0.704082 36.2297 0.659037C36.1925 0.588767 36.1429 0.535614 36.0809 0.50228C36.0189 0.468947 35.9373 0.451829 35.8363 0.451829H35.4925V2.35003C35.4925 2.50318 35.5085 2.59778 35.5413 2.63561C35.5864 2.68696 35.6573 2.71309 35.7521 2.71309H35.8363V2.78066H34.8005V2.71309H34.8864C34.9901 2.71309 35.0628 2.68156 35.1062 2.6176C35.1337 2.57796 35.147 2.48877 35.147 2.34913V0.45273H34.8528C34.7385 0.45273 34.6578 0.46174 34.6091 0.478857C34.5471 0.50228 34.493 0.546425 34.4496 0.61219C34.4053 0.677956 34.3787 0.767145 34.3699 0.879757H34.3016L34.3309 0.296875H36.3245Z"
-              fill="white"
-            ></path>
-            <path
-              d="M37.954 2.78156L37.0103 0.691469V2.35093C37.0103 2.50408 37.0263 2.59868 37.059 2.63651C37.1034 2.68787 37.1734 2.71399 37.2699 2.71399H37.3568V2.78156H36.5061V2.71399H36.5921C36.6949 2.71399 36.7684 2.68246 36.8118 2.6185C36.8375 2.57886 36.8517 2.48967 36.8517 2.35003V0.727505C36.8517 0.617596 36.8393 0.537415 36.8154 0.488767C36.7985 0.453631 36.7675 0.423902 36.7223 0.399578C36.6771 0.376154 36.6045 0.364443 36.5052 0.364443V0.296875H37.1973L38.0842 2.24102L38.9561 0.296875H39.6482V0.364443H39.5631C39.4585 0.364443 39.385 0.395974 39.3416 0.459037C39.315 0.497775 39.3017 0.587866 39.3017 0.726604V2.34913C39.3017 2.50228 39.3185 2.59687 39.3522 2.63471C39.3965 2.68606 39.4665 2.71219 39.5631 2.71219H39.6482V2.77976H38.6106V2.71219H38.6965C38.802 2.71219 38.8746 2.68066 38.9163 2.61669C38.9428 2.57705 38.9561 2.48787 38.9561 2.34823V0.688767L38.0142 2.77886H37.954V2.78156Z"
-              fill="white"
-            ></path>
-          </svg>
+          <LogoIcon title="Db Store - товары из Китая" />
         </a>
       </Link>
-      <ul className="main-menu">
-        <li className={router.pathname == "/" ? "active" : ""}>
+      <ul className="header-menu">
+        <li className={router.asPath == "/" ? "active" : ""}>
           <Link href="/">
             <a className="menu-link">Главная</a>
           </Link>
         </li>
-        <li className={router.pathname == "/shop" ? "active" : ""}>
+        <li className={router.asPath == "/shop" ? "active" : ""}>
           <Link href="/shop">
-            <a className="menu-link">Каталог</a>
+            <a className="menu-link">Все товары</a>
+          </Link>
+        </li>
+        <li className={router.asPath == "/shop/watches" ? "active" : ""}>
+          <Link href="/shop/watches">
+            <a className="menu-link">Смарт-часы</a>
+          </Link>
+        </li>
+        <li className={router.asPath == "/shop/headphones" ? "active" : ""}>
+          <Link href="/shop/headphones">
+            <a className="menu-link">Наушники</a>
+          </Link>
+        </li>
+        <li className={router.asPath == "/shop/accessories" ? "active" : ""}>
+          <Link href="/shop/accessories">
+            <a className="menu-link">Аксессуары</a>
           </Link>
         </li>
       </ul>
-      <div className="header-right-bar">
-        <Link href="/">
-          <a className="contact">Задайте вопрос</a>
-        </Link>
-        {/* <div className="search-wrap">
-          <input
+      <ul className="header-bar">
+        <li className="header-search">
+          <SearchIcon />
+          {/* <input
             type="text"
             placeholder="Поиск по товарам"
             onChange={(e) => searchItems(e.target.value)}
-          />
-          <span className="line"></span>
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19.6714 18.0942L15.8949 14.3287C17.1134 12.7764 17.7745 10.8595 17.7721 8.88603C17.7721 7.12854 17.2509 5.41052 16.2745 3.94922C15.2981 2.48792 13.9103 1.34897 12.2866 0.676412C10.6629 0.00385015 8.87617 -0.172123 7.15245 0.170746C5.42873 0.513616 3.84539 1.35993 2.60266 2.60266C1.35993 3.84539 0.513616 5.42873 0.170746 7.15245C-0.172123 8.87617 0.00385015 10.6629 0.676412 12.2866C1.34897 13.9103 2.48792 15.2981 3.94922 16.2745C5.41052 17.2509 7.12854 17.7721 8.88603 17.7721C10.8595 17.7745 12.7764 17.1134 14.3287 15.8949L18.0942 19.6714C18.1974 19.7755 18.3203 19.8582 18.4556 19.9146C18.591 19.971 18.7362 20 18.8828 20C19.0294 20 19.1746 19.971 19.31 19.9146C19.4453 19.8582 19.5682 19.7755 19.6714 19.6714C19.7755 19.5682 19.8582 19.4453 19.9146 19.31C19.971 19.1746 20 19.0294 20 18.8828C20 18.7362 19.971 18.591 19.9146 18.4556C19.8582 18.3203 19.7755 18.1974 19.6714 18.0942V18.0942ZM2.22151 8.88603C2.22151 7.56791 2.61238 6.2794 3.34468 5.18342C4.07699 4.08745 5.11785 3.23324 6.33563 2.72882C7.55341 2.22439 8.89342 2.09241 10.1862 2.34957C11.479 2.60672 12.6665 3.24145 13.5986 4.1735C14.5306 5.10555 15.1653 6.29306 15.4225 7.58585C15.6796 8.87864 15.5477 10.2186 15.0432 11.4364C14.5388 12.6542 13.6846 13.6951 12.5886 14.4274C11.4927 15.1597 10.2041 15.5505 8.88603 15.5505C7.11849 15.5505 5.42334 14.8484 4.1735 13.5986C2.92366 12.3487 2.22151 10.6536 2.22151 8.88603Z"
-              fill="white"
-            />
-          </svg>
-        </div> */}
-        <div className="bag-wrap">
-          <div className="bag-wrap-icon">
-            <BagIcon />
-            <span className="bag-qty">{bagItemsQty}</span>
-          </div>
-          <span className="title">Корзина</span>
-        </div>
-      </div>
+          /> */}
+        </li>
+        <li className="header-bag" onClick={() => dispatch(toggleBag())}>
+          <BagIcon />
+          <span className="bag-qty">{bagItemsQty}</span>
+        </li>
+      </ul>
     </header>
   );
 }

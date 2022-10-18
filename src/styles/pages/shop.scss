@@ -2,16 +2,18 @@ section.banner {
   position: relative;
   width: 100%;
   height: 85vh;
+  background-color: $color-middle;
   img {
     object-fit: cover;
     width: 100%;
-    z-index: -1;
+    z-index: 1;
   }
   .title {
     position: absolute;
     bottom: 4rem;
     left: $padding-layout;
     color: $white;
+    z-index: 2;
     @include media("<=tablet") {
       left: 2rem;
     }
@@ -46,10 +48,17 @@ section.content {
   width: 100%;
   min-height: 30vh;
   height: auto;
+
   .catalog-wrap {
     position: relative;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    .loading {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      padding: 3rem;
+    }
   }
 }

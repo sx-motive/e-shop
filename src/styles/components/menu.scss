@@ -1,0 +1,47 @@
+.mobile-menu {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $white;
+  z-index: 300;
+  padding: 2rem;
+  transition: right 0.56s cubic-bezier(0.28, 0.81, 0.43, 0.97);
+  &.close {
+    right: -100%;
+  }
+  .logo-icon {
+    position: relative;
+  }
+  .bag-close {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    cursor: pointer;
+  }
+  ul.menu {
+    position: relative;
+    padding: 4rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 1.5rem;
+    li {
+      position: relative;
+      width: 100%;
+    }
+  }
+  ul.menu-footer {
+    position: absolute;
+    bottom: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.8rem;
+    li {
+      position: relative;
+      width: 100%;
+    }
+  }
+}

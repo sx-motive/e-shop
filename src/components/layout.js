@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Header from "./header";
 import Footer from "./footer";
 import Bag from "./bag";
+import Menu from "./menu";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 const AUTHUSER = process.env.NEXT_PUBLIC_AUTH_USER;
@@ -18,9 +19,6 @@ export default function Layout({ children }) {
 
   const getAllData = async () => {
     const auth = AUTHUSER + ":" + AUTHPASS;
-    console.log(auth);
-    const test = btoa(auth);
-    console.log(test);
     const res = await fetch(`${URL}/products`, {
       method: "GET",
       headers: {
@@ -29,7 +27,7 @@ export default function Layout({ children }) {
     });
     const arrData = await res.json();
     dispatch(setData(arrData));
-    console.log(arrData);
+    console.log("Data resived!");
   };
 
   useEffect(() => {
@@ -45,6 +43,7 @@ export default function Layout({ children }) {
           <Header />
           {children}
           <Footer />
+          <Menu />
           <Bag />
         </>
       )}

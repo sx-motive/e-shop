@@ -1,13 +1,11 @@
 import React from "react";
-import { Provider } from "react-redux";
 import Head from "next/head";
+import { Provider } from "react-redux";
 import { store } from "../store";
-
 import Layout from "../components/layout";
-
 import "../styles/main.scss";
 
-function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Head>
@@ -19,5 +17,3 @@ function MyApp({ Component, pageProps }) {
     </Provider>
   );
 }
-
-export default MyApp;

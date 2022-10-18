@@ -2,12 +2,15 @@ import React, { useEffect } from "react";
 
 import Head from "next/head";
 import Image from "next/image";
+import btoa from "btoa";
 
 import { useDispatch } from "react-redux";
 import { addtobag } from "../../store/slices/bagSlice";
 import { toggleBag } from "../../store/slices/togglesSlice";
 
 const URL = process.env.NEXT_PUBLIC_URL;
+const AUTHUSER = process.env.NEXT_PUBLIC_AUTH_USER;
+const AUTHPASS = process.env.NEXT_PUBLIC_AUTH_PASS;
 
 export default function Product({ productData }) {
   useEffect(() => {
@@ -106,20 +109,32 @@ export default function Product({ productData }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`${URL}/products`);
+  const auth = AUTHUSER + ":" + AUTHPASS;
+  const res = await fetch(`${URL}/products`, {
+    method: "GET",
+    headers: {
+      Authorization: `Basic ${btoa(auth)}`,
+    },
+  });
   const products = await res.json();
   return {
-    paths: products.map((product) => {
-      const productSlug = product.slug.toString();
-      return { params: { productSlug } };
+    paths: products.map((item) => {
+      const product = item.slug.toString();
+      return { params: { product } };
     }),
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const productSlug = params.productSlug;
-  const res = await fetch(`${URL}/products?search={"slug":"${productSlug}"}`);
+  const auth = AUTHUSER + ":" + AUTHPASS;
+  const product = params.product;
+  const res = await fetch(`${URL}/products?search={"slug":"${product}"}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Basic ${btoa(auth)}`,
+    },
+  });
   const data = await res.json();
   return { props: { productData: data[0] } };
 }

@@ -62,16 +62,40 @@ export default function Footer() {
 
           <div className="col">
             <ul>
-              <li>Центр поддержки</li>
-              <li>Возврат товара</li>
-              <li>Отслеживание статуса заказа</li>
-              <li>Контакты</li>
+              <li>
+                <Link href="/">
+                  <a>Центр поддержки</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/">
+                  <a>Возврат товара</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/">
+                  <a>Отслеживание статуса заказа</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/">
+                  <a>Контакты</a>
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="col">
             <ul>
-              <li>Партнерская программа</li>
-              <li>Бонусы за друзей</li>
+              <li>
+                <Link href="/">
+                  <a>Партнерская программа</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/">
+                  <a>Бонусы за друзей</a>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -138,9 +162,21 @@ export default function Footer() {
         </div>
         <div className="footer-bottom-menu">
           <ul>
-            <li>Terms & Conditions</li>
-            <li>Privacy Statement</li>
-            <li>Accessibility Statement</li>
+            <li>
+              <Link href="/">
+                <a>Terms & Conditions</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/">
+                <a>Privacy Statement</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/">
+                <a>Accessibility Statement</a>
+              </Link>
+            </li>
           </ul>
         </div>
         <span className="author copyright">

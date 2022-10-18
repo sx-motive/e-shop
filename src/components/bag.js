@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleBag } from "../store/slices/togglesSlice";
 import { addtobag, lessbag, removebag } from "../store/slices/bagSlice";
+import { CloseIcon } from "./icons";
 
 export default function Bag() {
   const bag = useSelector((state) => state.bag.value);
@@ -26,6 +27,10 @@ export default function Bag() {
     bagQty();
   }, [bag.items]);
 
+  const dis = () => {
+    dispatch(toggleBag());
+  };
+
   return (
     <>
       <div className={`bag ${isBagOpen ? "open" : "close"}`}>
@@ -34,28 +39,7 @@ export default function Bag() {
             <span className="title">
               Мои товары <span className="total-qty">({bagItemsQty})</span>
             </span>
-            <svg
-              onClick={() => dispatch(toggleBag())}
-              className="bag-close"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M19.442 5.44257L5.44179 19.4414L4.55786 18.5576L18.558 4.55873L19.442 5.44257Z"
-                fill="black"
-              ></path>
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M18.558 19.4411L4.55786 5.44225L5.44179 4.55841L19.442 18.5572L18.558 19.4411Z"
-                fill="black"
-              ></path>
-            </svg>
+            <CloseIcon action={dis} />
           </div>
           <div className="bag-products">
             {bag.items.map((item) => (
