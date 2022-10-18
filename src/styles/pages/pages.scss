@@ -312,12 +312,14 @@ main.product-page {
   .content {
     position: relative;
     width: 100%;
-    margin-top: 6rem;
+    margin-top: 5rem;
+    min-height: calc(100vh - 5rem);
     flex-wrap: wrap;
     .col {
       position: relative;
       border: 1px solid $color-border;
       margin-left: -1px;
+
       &.image-01 {
         width: 35%;
         img {

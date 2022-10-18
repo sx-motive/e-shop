@@ -49,7 +49,7 @@ export default function Header() {
   useEffect(() => {
     window.addEventListener("scroll", () => fixedHeader());
     const fixedHeader = () => {
-      window.pageYOffset >= 400
+      window.pageYOffset >= 100
         ? setHeaderSticky((headerSticky = true))
         : setHeaderSticky((headerSticky = false));
     };
