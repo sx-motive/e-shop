@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { useSelector } from "react-redux";
-import Product from "../components/product";
+import Product from "../../components/product";
 
 export default function Headphones() {
   const data = useSelector((state) => state.data.value);

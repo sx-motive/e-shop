@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleBag } from "../redux/togglesSlice";
-import { addtobag, lessbag, removebag } from "../redux/bagSlice";
+import { toggleBag } from "../store/slices/togglesSlice";
+import { addtobag, lessbag, removebag } from "../store/slices/bagSlice";
 
 export default function Bag() {
   const bag = useSelector((state) => state.bag.value);

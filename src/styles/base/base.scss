@@ -1,0 +1,115 @@
+$title-ff: "Apercu", sans-serif;
+$default-ff: "Apercu", sans-serif;
+
+$white: rgb(255, 255, 255);
+$black: rgb(0, 0, 0);
+
+$light: #f3f5f7;
+$dark: rgb(31, 31, 31);
+$color-middle: rgb(161, 161, 161);
+$color-border: #e5e5e6;
+
+$padding-layout: 4rem;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: $black;
+  color: $white;
+}
+
+html {
+  font-size: 17px;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  font-family: $default-ff;
+  font-weight: 500;
+  font-size: 1rem;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $title-ff;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding-inline-start: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: initial;
+}
+
+a.button {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 0;
+  background-color: $black;
+  color: $white;
+  padding: 1rem 1.8rem;
+  border-radius: 5rem;
+}
+
+p {
+  line-height: 1.5rem;
+}
+
+input,
+select {
+  padding: 1.2rem 1rem;
+  border-radius: 0;
+  border: 1px solid $color-border;
+  margin-bottom: 1rem;
+  appearance: none;
+  transition: border 0.3s ease-in-out;
+  &::placeholder {
+    color: $color-middle;
+  }
+  &:focus-within,
+  &:focus-visible {
+    border-radius: 0;
+    border: 1px solid $black;
+    outline: 0;
+  }
+}
+
+main {
+  position: relative;
+  width: 100%;
+}
+section {
+  position: relative;
+  width: 100%;
+}
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
