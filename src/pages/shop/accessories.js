@@ -30,6 +30,7 @@ export default function Accessories() {
         <Image
           className='banner-image'
           src='/images/bg-accessories.webp'
+          alt='Аксессуары'
           layout='fill'
           quality={100}
           priority

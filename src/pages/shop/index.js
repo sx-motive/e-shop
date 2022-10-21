@@ -13,7 +13,7 @@ export default function Shop() {
 
   useEffect(() => {
     data.length > 0 ? setLoading(false) : '';
-  });
+  }, [data.length]);
   return (
     <>
       <Head>
@@ -29,7 +29,9 @@ export default function Shop() {
         <Image
           className='banner-image'
           src='/images/bg.webp'
+          alt='Каталог'
           layout='fill'
+          quality={100}
           priority
         />
       </section>

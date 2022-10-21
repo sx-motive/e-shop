@@ -31,6 +31,7 @@ export default function Watches() {
           className='banner-image'
           src='/images/bg-watches.webp'
           layout='fill'
+          alt='Смарт-часы'
           quality={100}
           priority
         />
