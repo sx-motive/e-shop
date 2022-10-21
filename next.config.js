@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    loader: 'cloudinary',
+    unoptimized: true,
     domains: ['res.cloudinary.com', 'e-shop-motive.netlify.app'],
     formats: ['image/avif', 'image/webp'],
   },
