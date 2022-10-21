@@ -3,8 +3,9 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ["res.cloudinary.com"],
-    formats: ["image/avif", "image/webp"],
+    loader: 'cloudinary',
+    domains: ['res.cloudinary.com', 'e-shop-motive.netlify.app'],
+    formats: ['image/avif', 'image/webp'],
   },
 };
 
