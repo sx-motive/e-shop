@@ -5,21 +5,25 @@
   height: 70vh;
   border: 1px solid $color-border;
   margin: -1px -1px 0 0;
-  @include media("<=tablet") {
+  @include media('<=tablet') {
     width: 33%;
     height: 50vh;
   }
-  @include media("<=phone") {
+  @include media('<=phone') {
     width: 50%;
     height: 50vh;
   }
   .title {
+    position: relative;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    z-index: 10;
   }
   .price {
+    position: relative;
     color: $color-middle;
     font-size: 0.9rem;
+    z-index: 10;
   }
   .image {
     position: absolute;
@@ -37,15 +41,20 @@
       height: 80%;
       top: 10%;
     }
+    .second-image-wrap {
+      position: absolute;
+      width: 70%;
+      left: 15%;
+      top: 10%;
+      height: 80%;
+    }
     .first {
       position: relative;
       object-fit: contain;
     }
     .second {
-      position: absolute;
-      top: 0;
-      left: 0;
-      object-fit: cover;
+      position: relative;
+      object-fit: contain;
       opacity: 0;
       background-color: $white;
       transition: 0.4s ease;

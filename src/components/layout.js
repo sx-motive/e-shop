@@ -8,6 +8,7 @@ import Header from './header';
 import Footer from './footer';
 import Bag from './bag';
 import Menu from './menu';
+import ProductModal from './productModal';
 
 const URL = process.env.NEXT_PUBLIC_URL;
 const AUTHUSER = process.env.NEXT_PUBLIC_AUTH_USER;
@@ -44,6 +45,7 @@ export default function Layout({ children }) {
           <Footer />
           <Menu />
           <Bag />
+          <ProductModal />
         </>
       )}
     </>

@@ -1,0 +1,120 @@
+.product-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0rem;
+  top: 0rem;
+  background-color: rgba($color: $white, $alpha: 0.9);
+  color: $black;
+  z-index: 200;
+  border: 1px solid $color-border;
+  padding: 6rem;
+  display: none;
+  @include media('<=laptop') {
+    padding: 5.5rem 1rem 1rem 1rem;
+  }
+  @include media('<=tablet') {
+    padding: 5rem 0;
+  }
+  &.view {
+    display: flex;
+    @include media('<=tablet') {
+      flex-wrap: wrap;
+      overflow-y: scroll;
+    }
+  }
+  .col {
+    position: relative;
+    width: 35%;
+    height: 100%;
+    border: 1px solid $color-border;
+    background-color: $white;
+    margin-left: -1px;
+    @include media('<=laptop') {
+      width: 33.33%;
+    }
+    @include media('<=tablet') {
+      width: 100%;
+      margin-left: 0;
+      margin-top: -1px;
+    }
+    .img-wrap {
+      position: relative;
+      width: 80%;
+      height: 100%;
+      margin: 0 auto;
+    }
+    img {
+      object-fit: contain;
+    }
+    &.meta {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      @include media('<=laptop') {
+        width: 33.33%;
+      }
+      @include media('<=tablet') {
+        width: 100%;
+        padding: 2rem;
+      }
+      .subtitle {
+        position: relative;
+        width: 100%;
+        margin-bottom: 1rem;
+        font-size: 0.75rem;
+        opacity: 0.6;
+      }
+      .title {
+        font-size: 1.6rem;
+      }
+      .price {
+        font-size: 1.3rem;
+        margin: 1rem 0 2rem 0;
+      }
+      .desc {
+        position: relative;
+        font-size: 0.9rem;
+        line-height: 1.3rem;
+        height: 100%;
+        max-height: 70%;
+        overflow-y: auto;
+        @include media('<=tablet') {
+          max-height: 1000px;
+        }
+      }
+      .btn {
+        position: relative;
+        width: 100%;
+        padding: 1rem;
+        background-color: $black;
+        color: $white;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 2rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: $light;
+          color: $black;
+        }
+      }
+    }
+  }
+  .close {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    right: 0;
+    top: 0;
+    background-color: $black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    path {
+      fill: $white;
+    }
+  }
+}
